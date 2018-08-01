@@ -28,7 +28,7 @@
   },
   "triggers": {
     "getPetsByStatus": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatus",
+      "main": "com.rewoo.elastic.triggers.GetPetsByStatus",
       "type": "polling",
       "title": "Get Pets By Status (HttpClient)",
       "description": "Retrieves pets from the Petstore API by given pet status using Apache HttpClient",
@@ -50,7 +50,7 @@
       }
     },
     "getPetsByStatusJaxRs": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatusJaxRs",
+      "main": "com.rewoo.elastic.triggers.GetPetsByStatusJaxRs",
       "type": "polling",
       "title": "Get Pets By Status (JAX-RS)",
       "description": "Retrieves pets from the Petstore API by given pet status using Java API for RESTful Web Services (JAX-RS)",
