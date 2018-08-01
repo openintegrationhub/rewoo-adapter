@@ -1,5 +1,5 @@
 {
-  "title": "REWOO Scope API (Java)",
+  "title": "REWOO Scope Adapter (Java)",
   "description": "elastic.io component for the REWOO Scope API",
   "docsUrl": "https://github.com/elasticio/scope-component-java",
   "credentials": {
