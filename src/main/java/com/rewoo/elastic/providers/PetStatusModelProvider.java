@@ -1,8 +1,8 @@
-package io.elastic.petstore.providers;
+package com.rewoo.elastic.providers;
 
 
 import io.elastic.api.SelectModelProvider;
-import io.elastic.petstore.HttpClientUtils;
+import com.rewoo.elastic.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

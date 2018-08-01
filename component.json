@@ -9,9 +9,22 @@
         "required": true,
         "viewClass": "TextFieldWithNoteView",
         "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
+      },
+      "username": {
+        "label": "Your username",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "Use your admin username registered in <b>REWOO Scope</b>",
+        "placeholder": "johndoe"
+      },
+      "password": {
+        "label": "Your password",
+        "required": true,
+        "viewClass": "PasswordFieldView",
+        "note": "Use your password for <b>REWOO Scope</b>"
       }
     },
-    "verifier": "io.elastic.petstore.ApiKeyVerifier"
+    "verifier": "com.rewoo.elastic.ApiKeyVerifier"
   },
   "triggers": {
     "getPetsByStatus": {
@@ -59,7 +72,7 @@
       }
     },
     "getPetsByStatusWithDynamicSelectModel": {
-      "main": "io.elastic.petstore.triggers.GetPetsByStatus",
+      "main": "com.rewoo.elastic.triggers.GetPetsByStatus",
       "type": "polling",
       "title": "Get Pets By Status With Dynamic Select Model",
       "description": "Retrieves pets from the Petstore API by given pet status. The available statuses are retrieved from the Petstore API dynamically.",
@@ -68,7 +81,7 @@
           "label": "Pet Status",
           "required": true,
           "viewClass": "SelectView",
-          "model": "io.elastic.petstore.providers.PetStatusModelProvider",
+          "model": "com.rewoo.elastic.providers.PetStatusModelProvider",
           "prompt": "Select Pet Status"
         }
       },
@@ -79,7 +92,7 @@
   },
   "actions": {
     "createPet": {
-      "main": "io.elastic.petstore.actions.CreatePet",
+      "main": "com.rewoo.elastic.CreatePet",
       "title": "Create a Pet",
       "description": "Creates a new Pet",
       "metadata": {

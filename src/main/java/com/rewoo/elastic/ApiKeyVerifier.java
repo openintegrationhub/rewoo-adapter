@@ -1,4 +1,4 @@
-package io.elastic.petstore;
+package com.rewoo.elastic;
 
 
 import io.elastic.api.CredentialsVerifier;

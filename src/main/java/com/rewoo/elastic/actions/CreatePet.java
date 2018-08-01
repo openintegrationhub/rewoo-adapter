@@ -1,9 +1,9 @@
-package io.elastic.petstore.actions;
+package com.rewoo.elastic.actions;
 
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import io.elastic.petstore.HttpClientUtils;
+import com.rewoo.elastic.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

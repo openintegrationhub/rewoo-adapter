@@ -1,4 +1,4 @@
-package io.elastic.petstore;
+package com.rewoo.elastic;
 
 public class Constants {
 
