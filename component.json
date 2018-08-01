@@ -1,7 +1,7 @@
 {
-  "title": "Petstore API (Java)",
-  "description": "elastic.io component for the Petstore API",
-  "docsUrl": "https://github.com/elasticio/petstore-component-java",
+  "title": "REWOO Scope API (Java)",
+  "description": "elastic.io component for the REWOO Scope API",
+  "docsUrl": "https://github.com/elasticio/scope-component-java",
   "credentials": {
     "fields": {
       "apiKey": {
