@@ -81,6 +81,7 @@ public final class HttpClientUtils {
             params.put(Constants.SCOPE_SESSION_ID_REQUEST_KEY, currentSessionId);
             URIBuilder uriBuilder = createInitializedURIBuilder(path, config, params);
             request = requestBuilder.apply(uriBuilder);
+            logger.info("Try to call method {}", request.toString());
             if (body != null) {
                 if (!(request instanceof HttpPost)) {
                     throw new IllegalArgumentException("If you want to pass data via the request body you must use an HTTP POST, PUT or PATCH request!");
@@ -125,6 +126,7 @@ public final class HttpClientUtils {
 
         URIBuilder uriBuilder = createInitializedURIBuilder(Constants.LOGOUT_METHOD, config, logoutParams);
         HttpRequestBase request = requestBuilder.apply(uriBuilder);
+        logger.info("Try to logout user");
         String logoutAnswer;
         try {
             logoutAnswer = sendRequest(request);
