@@ -144,6 +144,7 @@ public final class HttpClientUtils {
         if (!scopeBaseUrl.endsWith("/")) {
             scopeBaseUrl += "/";
         }
+        scopeBaseUrl += Constants.API_SERVICE_NAME + "/";
         return scopeBaseUrl;
     }
 

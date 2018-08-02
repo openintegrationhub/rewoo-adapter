@@ -8,6 +8,7 @@ public class Constants {
     public static final String LOGIN_METHOD = "login";
     public static final String CHECK_API_METHOD = "isApiReady";
     public static final String GET_NODE_TYPES_METHOD = "getNodeTypes";
+    public static final String API_SERVICE_NAME = "api";
 
     public static final String SCOPE_INSTANCE_CONFIG_KEY = "scopeInstance";
     public static final String SCOPE_USERNAME_CONFIG_KEY = "username";
