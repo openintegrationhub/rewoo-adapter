@@ -21,7 +21,7 @@
         "label": "Your REWOO Scope instance to use",
         "required": true,
         "viewClass": "TextFieldView",
-        "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: TextFieldView"
+        "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: https://trial.rewoo.net/oih/"
       }
     },
     "verifier": "com.rewoo.elastic.ScopeCredentialsVerifier"

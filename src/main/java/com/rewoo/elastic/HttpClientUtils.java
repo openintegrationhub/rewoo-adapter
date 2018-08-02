@@ -36,8 +36,7 @@ public final class HttpClientUtils {
 
     private static String get(final String path,
                               final JsonObject configuration) {
-        String aPath = path.startsWith("/") ? path : "/" + path;
-        final String requestURI = getScopeBaseUrl(configuration) + aPath;
+        final String requestURI = getScopeBaseUrl(configuration) + path;
         final HttpGet httpGet = new HttpGet(requestURI);
         return executeAuthenticated(httpGet, configuration);
     }
@@ -45,8 +44,7 @@ public final class HttpClientUtils {
     public static JsonObject post(final String path,
                                   final JsonObject configuration,
                                   final JsonObject body) {
-        String aPath = path.startsWith("/") ? path : "/" + path;
-        final String requestURI = getScopeBaseUrl(configuration) + aPath;
+        final String requestURI = getScopeBaseUrl(configuration) + path;
         final HttpPost httpPost = new HttpPost(requestURI);
         try {
             httpPost.setEntity(new StringEntity(JSON.stringify(body)));
@@ -77,9 +75,11 @@ public final class HttpClientUtils {
     }
 
     private static JsonObject login(final JsonObject configuration) {
+        HttpGet request = new HttpGet(getScopeBaseUrl(configuration) + Constants.LOGIN_METHOD);
+        logger.info("Try to login via {}", request.toString());
         String loginAnswer;
         try {
-            loginAnswer = sendRequest(new HttpGet(getScopeBaseUrl(configuration) + Constants.LOGIN_METHOD), configuration, (req, conf) -> {
+            loginAnswer = sendRequest(request, configuration, (req, conf) -> {
             req.addHeader(new BasicHeader(Constants.SCOPE_USERNAME_REQUEST_KEY, conf.getJsonString(Constants.SCOPE_USERNAME_CONFIG_KEY).getString()));
             req.addHeader(new BasicHeader(Constants.SCOPE_PASSWORD_REQUEST_KEY, conf.getJsonString(Constants.SCOPE_PASSWORD_CONFIG_KEY).getString()));
         });
