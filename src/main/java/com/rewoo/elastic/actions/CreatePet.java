@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.json.JsonObject;
 import javax.json.JsonString;
+import java.util.Collections;
 
 /**
  * Action to create a pet.
@@ -45,7 +46,7 @@ public class CreatePet implements Module {
             throw new IllegalStateException("Status is required");
         }
 
-        final JsonObject pet = HttpClientUtils.post("/pet", configuration, body);
+        final JsonObject pet = HttpClientUtils.post("/pet", configuration, body, Collections.emptyMap());
 
         logger.info("Pet successfully created");
 

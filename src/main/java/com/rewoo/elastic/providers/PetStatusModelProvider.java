@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.json.*;
+import java.util.Collections;
 
 /**
  * Implementation of {@link SelectModelProvider} providing a select model for the pet status select.
@@ -30,7 +31,7 @@ public class PetStatusModelProvider implements SelectModelProvider {
     public JsonObject getSelectModel(final JsonObject configuration) {
         logger.info("About to retrieve pet statuses from the Petstore API");
 
-        final JsonArray statuses = HttpClientUtils.getMany("/pet/statuses", configuration);
+        final JsonArray statuses = HttpClientUtils.getMany("/pet/statuses", configuration, Collections.emptyMap());
 
         logger.info("Successfully retrieved {} statuses", statuses.size());
 
