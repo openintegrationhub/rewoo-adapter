@@ -12,6 +12,7 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Trigger to get all node types
@@ -24,7 +25,7 @@ public class GetAllNodeTypes implements Module {
         logger.info("Searching for all available node types");
         final String path = Constants.GET_NODE_TYPES_METHOD;
 
-        final JsonObject nodeTypesAnswer = HttpClientUtils.getSingle(path, parameters.getConfiguration(), Collections.emptyMap());
+        final JsonObject nodeTypesAnswer = HttpClientUtils.getSingle(path, parameters.getConfiguration(), new HashMap<>());
         final JsonArray nodeTypes = nodeTypesAnswer.getJsonArray(Constants.SCOPE_NODE_TYPES_RESPONSE_KEY);
         logger.info("Got {} node types", nodeTypes.size());
 
