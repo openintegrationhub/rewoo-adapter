@@ -1,15 +1,9 @@
 {
   "title": "REWOO Scope Adapter (Java)",
   "description": "elastic.io component for the REWOO Scope API",
-  "docsUrl": "https://github.com/elasticio/scope-component-java",
+  "docsUrl": "https://www.rewoo.de",
   "credentials": {
     "fields": {
-      "apiKey": {
-        "label": "API key",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
-      },
       "username": {
         "label": "Your username",
         "required": true,
@@ -22,83 +16,29 @@
         "required": true,
         "viewClass": "PasswordFieldView",
         "note": "Use your password for <b>REWOO Scope</b>"
+      },
+      "scopeInstance": {
+        "label": "Your REWOO Scope instance to use",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: TextFieldView"
       }
     },
-    "verifier": "com.rewoo.elastic.ApiKeyVerifier"
+    "verifier": "com.rewoo.elastic.ScopeCredentialsVerifier"
   },
   "triggers": {
-    "getPetsByStatus": {
-      "main": "com.rewoo.elastic.triggers.GetPetsByStatus",
+    "getAllNodeTypes": {
+      "main": "com.rewoo.elastic.triggers.GetAllNodeTypes",
       "type": "polling",
-      "title": "Get Pets By Status (HttpClient)",
-      "description": "Retrieves pets from the Petstore API by given pet status using Apache HttpClient",
+      "title": "Get all node types",
+      "description": "Retrieves all available node types of the REWOO Scope instance",
       "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
       },
       "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusJaxRs": {
-      "main": "com.rewoo.elastic.triggers.GetPetsByStatusJaxRs",
-      "type": "polling",
-      "title": "Get Pets By Status (JAX-RS)",
-      "description": "Retrieves pets from the Petstore API by given pet status using Java API for RESTful Web Services (JAX-RS)",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusWithDynamicSelectModel": {
-      "main": "com.rewoo.elastic.triggers.GetPetsByStatus",
-      "type": "polling",
-      "title": "Get Pets By Status With Dynamic Select Model",
-      "description": "Retrieves pets from the Petstore API by given pet status. The available statuses are retrieved from the Petstore API dynamically.",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "com.rewoo.elastic.providers.PetStatusModelProvider",
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./schemas/getPetsByStatus.out.json"
+        "out": "./schemas/getAllNodeTypes.out.json"
       }
     }
   },
   "actions": {
-    "createPet": {
-      "main": "com.rewoo.elastic.CreatePet",
-      "title": "Create a Pet",
-      "description": "Creates a new Pet",
-      "metadata": {
-        "in": "./schemas/createPet.in.json",
-        "out": "./schemas/createPet.out.json"
-      }
-    }
   }
 }

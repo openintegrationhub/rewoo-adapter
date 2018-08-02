@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "nodeTypes": {
+            "type": "array",
+            "required": true,
+            "properties": {
+                "id": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "Type id"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "title": "Node type name"
+                },
+                "type": {
+                    "type": "string",
+                    "required": true,
+                    "title": "Type"
+                }
+            }
+        }
+    }
+}
