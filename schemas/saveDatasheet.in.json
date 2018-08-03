@@ -4,6 +4,7 @@
         "node": {
             "type": "object",
             "required": true,
+            "title": "A node",
             "properties": {
                 "id": {
                     "type": "numeric",
@@ -19,7 +20,8 @@
         },
         "entries": {
           "type": "array",
-          "required": false,
+          "required": true,
+          "title": "The entries",
           "properties": {
             "id": {
                 "type": "numeric",
