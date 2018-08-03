@@ -40,5 +40,14 @@
     }
   },
   "actions": {
+    "saveDatasheet": {
+      "main": "com.rewoo.elastic.actions.SaveDatasheet",
+      "title": "Save datasheet",
+      "description": "Saves a datasheet for an existing node",
+      "metadata": {
+        "in": "./schemas/saveDatasheet.in.json",
+        "out": "./schemas/saveDatasheet.out.json"
+      }
+    }
   }
 }

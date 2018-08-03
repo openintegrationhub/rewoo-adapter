@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "node": {
+            "type": "object",
+            "required": true,
+            "properties": {
+                "id": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "Node id"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "title": "Node name"
+                }
+            }
+        },
+        "entries": {
+          "type": "array",
+          "required": false,
+          "properties": {
+            "id": {
+                "type": "numeric",
+                "required": true,
+                "title": "Entry id"
+            },
+            "title": {
+                "type": "string",
+                "required": true,
+                "title": "Entry title"
+            },
+            "value": {
+                "type": "string",
+                "required": true,
+                "title": "Value to save"
+            }
+          }
+        }
+    }
+}
