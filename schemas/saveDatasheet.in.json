@@ -1,22 +1,26 @@
 {
-    "title": "All entries",
-    "type": "array",
-    "required": true,
-    "properties": {
-      "id": {
+  "type": "object",
+  "properties": {
+    "entries": {
+      "type": "array",
+      "required": true,
+      "properties": {
+        "id": {
           "type": "numeric",
           "required": true,
           "title": "Entry id"
-      },
-      "title": {
+        },
+        "title": {
           "type": "string",
           "required": true,
           "title": "Entry title"
-      },
-      "value": {
+        },
+        "value": {
           "type": "string",
           "required": true,
           "title": "Value to save"
+        }
       }
     }
+  }
 }
