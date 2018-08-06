@@ -1,7 +1,5 @@
 package com.rewoo.elastic.triggers;
 
-import com.rewoo.elastic.Constants;
-import com.rewoo.elastic.HttpClientUtils;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
@@ -13,6 +11,8 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import java.util.HashMap;
 
+import com.rewoo.elastic.constant.Constants;
+import com.rewoo.elastic.connection.HttpClientUtils;
 /**
  * Trigger to get all node types
  */

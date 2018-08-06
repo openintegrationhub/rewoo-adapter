@@ -1,9 +1,9 @@
 package com.rewoo.elastic.actions;
 
+import com.rewoo.elastic.connection.HttpClientUtils;
 import io.elastic.api.ExecutionParameters;
 import io.elastic.api.Message;
 import io.elastic.api.Module;
-import com.rewoo.elastic.HttpClientUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

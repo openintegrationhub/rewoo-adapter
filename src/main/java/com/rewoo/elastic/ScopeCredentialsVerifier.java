@@ -1,12 +1,13 @@
 package com.rewoo.elastic;
 
 
+import com.rewoo.elastic.connection.HttpClientUtils;
+import com.rewoo.elastic.constant.Constants;
 import io.elastic.api.InvalidCredentialsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.json.JsonObject;
-import java.util.Collections;
 import java.util.HashMap;
 
 /**
