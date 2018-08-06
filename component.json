@@ -24,7 +24,7 @@
         "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: https://trial.rewoo.net/oih/"
       }
     },
-    "verifier": "com.rewoo.elastic.ScopeCredentialsVerifier"
+    "verifier": "com.rewoo.elastic.auth.ScopeCredentialsVerifier"
   },
   "triggers": {
     "getAllNodeTypes": {

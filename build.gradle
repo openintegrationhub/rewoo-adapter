@@ -22,7 +22,7 @@ dependencies {
     compile "io.elastic:sailor-jvm:2.0.1"
     compile "org.glassfish.jersey.core:jersey-client:2.25.1"
     compile "org.glassfish.jersey.media:jersey-media-json-processing:2.25.1"
-    compile files('lib/scope-oih-lib-1.0.0.jar')
+    compile files('lib/scope-oih-lib-1.0.1.jar')
 }
 
 uploadArchives {
