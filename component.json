@@ -1,59 +1,66 @@
 {
-  "title": "REWOO Scope Adapter (Java)",
-  "description": "elastic.io component for the REWOO Scope API",
-  "docsUrl": "https://www.rewoo.de",
-  "credentials": {
-    "fields": {
-      "username": {
-        "label": "Your username",
-        "required": true,
-        "viewClass": "TextFieldView",
-        "note": "Use your admin username registered in <b>REWOO Scope</b>",
-        "placeholder": "johndoe"
-      },
-      "password": {
-        "label": "Your password",
-        "required": true,
-        "viewClass": "PasswordFieldView",
-        "note": "Use your password for <b>REWOO Scope</b>"
-      },
-      "scopeInstance": {
-        "label": "Your REWOO Scope instance to use",
-        "required": true,
-        "viewClass": "TextFieldView",
-        "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: https://trial.rewoo.net/oih/"
-      }
+    "title": "REWOO Scope Adapter (Java)",
+    "description": "elastic.io component for the REWOO Scope API",
+    "docsUrl": "https://www.rewoo.de",
+    "credentials": {
+        "fields": {
+            "username": {
+                "label": "Your username",
+                "required": true,
+                "viewClass": "TextFieldView",
+                "note": "Use your admin username registered in <b>REWOO Scope</b>",
+                "placeholder": "johndoe"
+            },
+            "password": {
+                "label": "Your password",
+                "required": true,
+                "viewClass": "PasswordFieldView",
+                "note": "Use your password for <b>REWOO Scope</b>"
+            },
+            "scopeInstance": {
+                "label": "Your REWOO Scope instance to use",
+                "required": true,
+                "viewClass": "TextFieldView",
+                "note": "Specifiy the REWOO Scope instance used to talk to. Example for url: https://trial.rewoo.net/oih/"
+            }
+        },
+        "verifier": "com.rewoo.elastic.auth.ScopeCredentialsVerifier"
     },
-    "verifier": "com.rewoo.elastic.auth.ScopeCredentialsVerifier"
-  },
-  "triggers": {
-    "getAllNodeTypes": {
-      "main": "com.rewoo.elastic.triggers.GetAllNodeTypes",
-      "type": "polling",
-      "title": "Get all node types",
-      "description": "Retrieves all available node types of the REWOO Scope instance",
-      "fields": {
-      },
-      "metadata": {
-        "out": "./schemas/getAllNodeTypes.out.json"
-      }
-    }
-  },
-  "actions": {
-    "saveDatasheet": {
-      "main": "com.rewoo.elastic.actions.SaveDatasheet",
-      "title": "Save datasheet",
-      "description": "Saves a datasheet for an existing node",
-      "fields": {
-        "nodeType": {
-          "viewClass": "SelectView",
-          "prompt": "Select a node type",
-          "label": "Node type",
-          "required": true,
-          "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+    "triggers": {
+        "getAllNodeTypes": {
+            "main": "com.rewoo.elastic.triggers.GetAllNodeTypes",
+            "type": "polling",
+            "title": "Select one node type",
+            "description": "Select one node type of the REWOO Scope instance",
+            "fields": {
+                "nodeType": {
+                    "label": "Node Type",
+                    "required": true,
+                    "viewClass": "SelectView",
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider",
+                    "prompt": "Select Node Type"
+                }
+            },
+            "metadata": {
+                "out": "./schemas/getAllNodeTypes.out.json"
+            }
         }
-      },
-      "dynamicMetadata": "com.rewoo.elastic.providers.MDMProvider"
+    },
+    "actions": {
+        "saveDatasheet": {
+            "main": "com.rewoo.elastic.actions.SaveDatasheet",
+            "title": "Save datasheet",
+            "description": "Saves a datasheet for an existing node",
+            "fields": {
+                "nodeType": {
+                    "viewClass": "SelectView",
+                    "prompt": "Select a node type",
+                    "label": "Node type",
+                    "required": true,
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+                }
+            },
+            "dynamicMetadata": "com.rewoo.elastic.providers.MDMProvider"
+        }
     }
-  }
 }
