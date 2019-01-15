@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "files": {
+            "type": "array",
+            "required": true,
+            "properties": {
+                "id": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "Attachment Id"
+                },
+                "authorId": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "Author Id"
+                },
+                "size": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "File Size in Byte"
+                },
+                "creationTimestamp": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "Creation Date in Epoch Millis"
+                },
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "title": "File Name"
+                },
+                "extension": {
+                    "type": "string",
+                    "required": true,
+                    "title": "File Extension"
+                },
+                "mimeType": {
+                    "type": "string",
+                    "required": true,
+                    "title": "File MimeType"
+                },
+                "hash": {
+                    "type": "string",
+                    "required": true,
+                    "title": "File Hash"
+                },
+                "url": {
+                    "type": "string",
+                    "required": true,
+                    "title": "File Url"
+                },
+                "type": {
+                    "type": "string",
+                    "required": true,
+                    "title": "Type"
+                }
+            }
+        }
+    }
+}
