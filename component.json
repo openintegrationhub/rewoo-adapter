@@ -44,6 +44,24 @@
             "metadata": {
                 "out": "./schemas/getAllNodeTypes.out.json"
             }
+        },
+        "getAllChangedFiles": {
+            "main": "com.rewoo.elastic.triggers.GetAllChangedFiles",
+            "type": "polling",
+            "title": "Get all changed files",
+            "description": "Get all changed files of one FileLinks entry",
+            "fields": {
+                "selectedEntry": {
+                    "label": "FileLinks Entry",
+                    "required": true,
+                    "viewClass": "SelectView",
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
+                    "prompt": "Select FileLinks Entry"
+                }
+            },
+            "metadata": {
+                "out": "./schemas/getAllChangedFiles.out.json"
+            }
         }
     },
     "actions": {

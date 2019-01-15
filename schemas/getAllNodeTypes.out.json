@@ -10,6 +10,11 @@
                     "required": true,
                     "title": "Type id"
                 },
+                "dataTypeId": {
+                    "type": "numeric",
+                    "required": true,
+                    "title": "DataType id"
+                },
                 "name": {
                     "type": "string",
                     "required": true,
