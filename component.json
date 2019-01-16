@@ -65,20 +65,37 @@
         }
     },
     "actions": {
-        "saveDatasheet": {
-            "main": "com.rewoo.elastic.actions.SaveDatasheet",
-            "title": "Save datasheet",
-            "description": "Saves a datasheet for an existing node",
+        "upsertChangedFiles": {
+            "main": "com.rewoo.elastic.actions.UpsertChangedFiles",
+            "title": "Update or Insert Changed Files",
+            "description": "Updates or creates a datasheet to save the changed file",
             "fields": {
                 "nodeType": {
                     "viewClass": "SelectView",
-                    "prompt": "Select a node type",
+                    "prompt": "Select the node type with the file container",
                     "label": "Node type",
                     "required": true,
                     "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+                },
+                "fileEntry": {
+                    "label": "FileLinks Entry",
+                    "required": true,
+                    "viewClass": "SelectView",
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
+                    "prompt": "Select FileLinks Entry"
+                },
+                "copyButton": {
+                    "viewClass": "SelectView",
+                    "prompt": "Select a copy button to create new datasheets",
+                    "label": "CopyButton",
+                    "required": true,
+                    "model": "com.rewoo.elastic.providers.CopyButtonModelProvider"
                 }
             },
-            "dynamicMetadata": "com.rewoo.elastic.providers.MDMProvider"
+            "metadata": {
+                "in": "./schemas/upsertChangedFiles.in.json",
+                "out": "./schemas/upsertChangedFiles.out.json"
+            }
         }
     }
 }

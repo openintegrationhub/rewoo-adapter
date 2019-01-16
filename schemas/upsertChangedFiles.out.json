@@ -30,21 +30,6 @@
                     "required": true,
                     "title": "File Name"
                 },
-                "elementName": {
-                    "type": "string",
-                    "required": true,
-                    "title": "Container Element Name"
-                },
-                "elementId": {
-                    "type": "numeric",
-                    "required": true,
-                    "title": "Container Element Id"
-                },
-                "entryId": {
-                    "type": "numeric",
-                    "required": true,
-                    "title": "FileLinks Entry Id"
-                },
                 "extension": {
                     "type": "string",
                     "required": true,
