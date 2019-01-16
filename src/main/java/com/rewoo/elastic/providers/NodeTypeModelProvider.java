@@ -39,7 +39,7 @@ public class NodeTypeModelProvider implements SelectModelProvider {
 
         final JsonObjectBuilder builder = Json.createObjectBuilder();
 
-        nodeTypes.getValuesAs(JsonObject.class).stream().forEach(jsonObject -> {
+        nodeTypes.getValuesAs(JsonObject.class).forEach(jsonObject -> {
             final Integer id = jsonObject.getInt("id");
             final String label = jsonObject.getString("name");
             builder.add(id.toString(), label);
