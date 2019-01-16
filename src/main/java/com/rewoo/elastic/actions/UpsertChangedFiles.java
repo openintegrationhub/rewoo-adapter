@@ -56,7 +56,8 @@ public class UpsertChangedFiles implements Module {
                 // insert -> press copy button
                 elementId = ScopeApi.copyByButton(configuration, Long.valueOf(copyButtonIds[0]), Long.valueOf(copyButtonIds[1]), userId, elementName);
             }
-            ScopeApi.saveFileByUrl(configuration, elementId, fileEntryId, url);
+            String filename = file.getString("name") + "." + file.getString("extension");
+            ScopeApi.saveFileByUrl(configuration, elementId, fileEntryId, url, filename);
         });
 
         logger.info("File successfully updated");
