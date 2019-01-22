@@ -30,19 +30,16 @@ public class NodeTypeModelProvider implements SelectModelProvider {
     @Override
     public JsonObject getSelectModel(final JsonObject configuration) {
         logger.info("About to retrieve node types from the REWOO Scope instance");
-        final String path = Constants.GET_NODE_TYPES_METHOD;
-
-        final JsonObject nodeTypesAnswer = HttpClientUtils.getSingle(path, configuration, new HashMap<>());
+        final JsonObject nodeTypesAnswer = HttpClientUtils.getSingle(Constants.GET_NODE_TYPES_METHOD, configuration, new HashMap<>());
         final JsonArray nodeTypes = nodeTypesAnswer.getJsonArray(Constants.SCOPE_NODE_TYPES_RESPONSE_KEY);
-
         logger.info("Successfully retrieved {} node types", nodeTypes.size());
 
         final JsonObjectBuilder builder = Json.createObjectBuilder();
 
         nodeTypes.getValuesAs(JsonObject.class).forEach(jsonObject -> {
-            final Integer id = jsonObject.getInt("id");
+            final String id = jsonObject.getInt("dataTypeId") + ":" + jsonObject.getInt("id");
             final String label = jsonObject.getString("name");
-            builder.add(id.toString(), label);
+            builder.add(id, label);
         });
 
         return builder.build();

@@ -33,12 +33,19 @@
             "title": "Get all changed files",
             "description": "Get all changed files of one FileLinks entry",
             "fields": {
-                "selectedEntry": {
-                    "label": "FileLinks Entry",
-                    "required": true,
+                "nodeType": {
                     "viewClass": "SelectView",
-                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
-                    "prompt": "Select FileLinks Entry"
+                    "label": "Node type",
+                    "prompt": "Select the node type with the file container",
+                    "required": true,
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+                },
+                "fileEntry": {
+                    "viewClass": "SelectView",
+                    "label": "FileLinks Entry",
+                    "prompt": "Select FileLinks Entry",
+                    "required": true,
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider"
                 }
             },
             "metadata": {
@@ -54,22 +61,22 @@
             "fields": {
                 "nodeType": {
                     "viewClass": "SelectView",
-                    "prompt": "Select the node type with the file container",
                     "label": "Node type",
+                    "prompt": "Select the node type with the file container",
                     "required": true,
                     "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
                 },
                 "fileEntry": {
-                    "label": "FileLinks Entry",
-                    "required": true,
                     "viewClass": "SelectView",
-                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
-                    "prompt": "Select FileLinks Entry"
+                    "label": "FileLinks Entry",
+                    "prompt": "Select FileLinks Entry",
+                    "required": true,
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider"
                 },
                 "copyButton": {
                     "viewClass": "SelectView",
-                    "prompt": "Select a copy button to create new datasheets",
                     "label": "CopyButton",
+                    "prompt": "Select a copy button to create new datasheets",
                     "required": true,
                     "model": "com.rewoo.elastic.providers.CopyButtonModelProvider"
                 }

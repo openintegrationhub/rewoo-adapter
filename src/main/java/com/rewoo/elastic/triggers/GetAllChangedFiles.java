@@ -45,12 +45,12 @@ public class GetAllChangedFiles implements Module {
     private JsonObject executePlain(final JsonObject config, String since) {
         HashMap<String, String> params = new HashMap<>();
         params.put("since", since);
-        JsonString selectedEntry = config.getJsonString("selectedEntry");
+        JsonString selectedEntry = config.getJsonString("fileEntry");
         params.put("entryId", selectedEntry.getString());
         JsonObject changedFilesAnswer = HttpClientUtils.getSingle(Constants.GET_CHANGED_FILES_METHOD, config, params);
         JsonArray changedFiles = changedFilesAnswer.getJsonArray(Constants.SCOPE_CHANGED_FILES_RESPONSE_KEY);
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        changedFiles.getValuesAs(JsonObject.class).stream().forEach(file -> {
+        changedFiles.getValuesAs(JsonObject.class).forEach(file -> {
             JsonObjectBuilder builder = Json.createObjectBuilder();
             for(String key : file.keySet()) {
                 builder.add(key, file.get(key));
