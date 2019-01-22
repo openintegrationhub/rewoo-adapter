@@ -33,7 +33,8 @@ public class UpsertChangedFiles implements Module {
             throw new IllegalStateException("Files are required");
         }
 
-        Long nodeTypeId = Long.valueOf(configuration.getJsonString("nodeType").getString());
+        String[] idString = configuration.getJsonString("nodeType").getString().split(":");
+        Long nodeTypeId = Long.valueOf(idString[1]);
         Long fileEntryId = Long.valueOf(configuration.getJsonString("fileEntry").getString());
         String copyButtonDescription = configuration.getJsonString("copyButton").getString();
         String[] copyButtonIds = copyButtonDescription.split("@");
