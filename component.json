@@ -8,7 +8,7 @@
                 "label": "Your username",
                 "required": true,
                 "viewClass": "TextFieldView",
-                "note": "Use your admin username registered in <b>REWOO Scope</b>",
+                "note": "Use your ETL or ADMIN username registered in <b>REWOO Scope</b>",
                 "placeholder": "johndoe"
             },
             "password": {
@@ -27,24 +27,6 @@
         "verifier": "com.rewoo.elastic.auth.ScopeCredentialsVerifier"
     },
     "triggers": {
-        "getAllNodeTypes": {
-            "main": "com.rewoo.elastic.triggers.GetAllNodeTypes",
-            "type": "polling",
-            "title": "Select one node type",
-            "description": "Select one node type of the REWOO Scope instance",
-            "fields": {
-                "nodeType": {
-                    "label": "Node Type",
-                    "required": true,
-                    "viewClass": "SelectView",
-                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider",
-                    "prompt": "Select Node Type"
-                }
-            },
-            "metadata": {
-                "out": "./schemas/getAllNodeTypes.out.json"
-            }
-        },
         "getAllChangedFiles": {
             "main": "com.rewoo.elastic.triggers.GetAllChangedFiles",
             "type": "polling",
