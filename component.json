@@ -1,6 +1,6 @@
 {
-    "title": "REWOO Scope Adapter (Java)",
-    "description": "elastic.io component for the REWOO Scope API",
+    "title": "REWOO Scope OIH Adapter (Java)",
+    "description": "OIH Adapter as elastic.io component to read and write changed files managed by a REWOO Scope Instance",
     "docsUrl": "https://www.rewoo.de",
     "credentials": {
         "fields": {
