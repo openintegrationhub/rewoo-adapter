@@ -24,30 +24,19 @@ public class UpsertChangedFiles implements Module {
     @Override
     public void execute(final ExecutionParameters parameters) {
         logger.info("About to create or update files");
-        final Message message = parameters.getMessage();
-        final JsonObject body = message.getBody();
-        final JsonObject configuration = parameters.getConfiguration();
-
-        final JsonArray changedFiles = body.getJsonArray(Constants.SCOPE_CHANGED_FILES_RESPONSE_KEY);
+        final JsonArray changedFiles = parameters.getMessage().getBody().getJsonArray(Constants.SCOPE_CHANGED_FILES_RESPONSE_KEY);
         if (changedFiles == null) {
             throw new IllegalStateException("Files are required");
         }
+        final JsonObject configuration = parameters.getConfiguration();
 
-        String[] idString = configuration.getJsonString("nodeType").getString().split(":");
-        Long nodeTypeId = Long.valueOf(idString[1]);
-        Long fileEntryId = Long.valueOf(configuration.getJsonString("fileEntry").getString());
-        String copyButtonDescription = configuration.getJsonString("copyButton").getString();
-        String[] copyButtonIds = copyButtonDescription.split("@");
+        Long fileEntryId = getFileContainerId(configuration);
+        String[] copyButtonIds = getCopyButtonIds(configuration);
         String username = configuration.getJsonString("username").getString();
         Long userId = ScopeApi.getUserId(configuration, username);
+        Map<String, Long> elementNamesToIds = getElementNamesToIds(configuration);
 
-        JsonObject elementsForTypes = ScopeApi.getElements(configuration, new HashSet<>(Arrays.asList(nodeTypeId)));
-        Map<String, Long> elementNamesToIds = new HashMap<>();
-        elementsForTypes.getJsonArray(nodeTypeId.toString()).getValuesAs(JsonObject.class).stream().forEach(element -> {
-            elementNamesToIds.put(element.getString("name"), (long) element.getInt("id"));
-        });
-
-        changedFiles.getValuesAs(JsonObject.class).stream().forEach(file -> {
+        changedFiles.getValuesAs(JsonObject.class).forEach(file -> {
             String elementName = file.getString("elementName");
             String url = file.getString("url");
             Long elementId;
@@ -60,13 +49,38 @@ public class UpsertChangedFiles implements Module {
             String filename = file.getString("name") + "." + file.getString("extension");
             ScopeApi.saveFileByUrl(configuration, elementId, fileEntryId, url, filename);
         });
-
         logger.info("File successfully updated");
 
-        JsonObject result = Json.createObjectBuilder().add("success", true).build();
-        final Message data = new Message.Builder().body(result).build();
-
         logger.info("Emitting data");
-        parameters.getEventEmitter().emitData(data);
+        parameters.getEventEmitter().emitData(createResultData());
+    }
+
+    private Long getFileContainerId(final JsonObject configuration) {
+        return Long.valueOf(configuration.getJsonString("fileContainer").getString());
+    }
+
+    private Long getFileContainerNodeTypeId(final JsonObject configuration) {
+        String[] idString = configuration.getJsonString("fileContainerNodeType").getString().split(":");
+        return Long.valueOf(idString[1]);
+    }
+
+    private String[] getCopyButtonIds(final JsonObject configuration) {
+        String copyButtonDescription = configuration.getJsonString("copyButton").getString();
+        return copyButtonDescription.split("@");
+    }
+
+    private Map<String, Long> getElementNamesToIds(final JsonObject configuration) {
+        Long fileContainerNodeTypeId = getFileContainerNodeTypeId(configuration);
+        JsonObject elementsForTypes = ScopeApi.getElements(configuration, new HashSet<>(Arrays.asList(fileContainerNodeTypeId)));
+        Map<String, Long> elementNamesToIds = new HashMap<>();
+        elementsForTypes.getJsonArray(fileContainerNodeTypeId.toString()).getValuesAs(JsonObject.class).forEach(element -> {
+            elementNamesToIds.put(element.getString("name"), (long) element.getInt("id"));
+        });
+        return elementNamesToIds;
+    }
+
+    private Message createResultData() {
+        JsonObject result = Json.createObjectBuilder().add("success", true).build();
+        return new Message.Builder().body(result).build();
     }
 }
