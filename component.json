@@ -33,19 +33,20 @@
             "title": "Get all changed files",
             "description": "Get all changed files of one FileLinks entry",
             "fields": {
-                "nodeType": {
+                "fileContainerNodeType": {
                     "viewClass": "SelectView",
-                    "label": "Node type",
-                    "prompt": "Select the node type with the file container",
-                    "required": true,
-                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+                    "label": "Folder Layer",
+                    "prompt": "Select the folder layer with the file container",
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider",
+                    "required": true
                 },
-                "fileEntry": {
+                "fileContainer": {
                     "viewClass": "SelectView",
-                    "label": "FileLinks Entry",
-                    "prompt": "Select FileLinks Entry",
+                    "label": "File Container",
+                    "prompt": "Select the file container",
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
                     "required": true,
-                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider"
+                    "require": ["fileContainerNodeType"]
                 }
             },
             "metadata": {
@@ -59,26 +60,35 @@
             "title": "Update or Insert Changed Files",
             "description": "Updates or creates a datasheet to save the changed file",
             "fields": {
-                "nodeType": {
+                "fileContainerNodeType": {
                     "viewClass": "SelectView",
-                    "label": "Node type",
-                    "prompt": "Select the node type with the file container",
-                    "required": true,
-                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider"
+                    "label": "Folder Layer",
+                    "prompt": "Select the folder layer with the file container",
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider",
+                    "required": true
                 },
-                "fileEntry": {
+                "fileContainer": {
                     "viewClass": "SelectView",
-                    "label": "FileLinks Entry",
-                    "prompt": "Select FileLinks Entry",
+                    "label": "File Container",
+                    "prompt": "Select the file container",
+                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider",
                     "required": true,
-                    "model": "com.rewoo.elastic.providers.FileLinksModelProvider"
+                    "require": ["fileContainerNodeType"]
+                },
+                "copyButtonNodeType": {
+                    "viewClass": "SelectView",
+                    "label": "Folder Layer",
+                    "prompt": "Select the folder layer with the copy button",
+                    "model": "com.rewoo.elastic.providers.NodeTypeModelProvider",
+                    "required": true
                 },
                 "copyButton": {
                     "viewClass": "SelectView",
                     "label": "CopyButton",
                     "prompt": "Select a copy button to create new datasheets",
+                    "model": "com.rewoo.elastic.providers.CopyButtonModelProvider",
                     "required": true,
-                    "model": "com.rewoo.elastic.providers.CopyButtonModelProvider"
+                    "require": ["copyButtonNodeType"]
                 }
             },
             "metadata": {

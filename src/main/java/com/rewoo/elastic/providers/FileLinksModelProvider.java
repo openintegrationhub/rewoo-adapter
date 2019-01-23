@@ -11,9 +11,7 @@ public class FileLinksModelProvider implements SelectModelProvider {
 
     @Override
     public JsonObject getSelectModel(final JsonObject configuration) {
-//        Map<Long, List<JsonObject>> dataTypesMap = ScopeApi.getDataTypesMap(configuration);
-//        Set<Long> dataTypeIds = dataTypesMap.keySet();
-        String[] idString = configuration.getJsonString("nodeType").getString().split(":");
+        String[] idString = configuration.getJsonString("fileContainerNodeType").getString().split(":");
         Long dataTypeId = Long.valueOf(idString[0]);
 
         Set<Long> dataTypeIds = new HashSet<>();

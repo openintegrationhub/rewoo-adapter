@@ -14,22 +14,18 @@ public class CopyButtonModelProvider implements SelectModelProvider {
 
     @Override
     public JsonObject getSelectModel(final JsonObject configuration) {
-        Map<Long, List<JsonObject>> dataTypesMap = ScopeApi.getDataTypesMap(configuration);
-        Set<Long> dataTypeIds = dataTypesMap.keySet();
+        String[] idString = configuration.getJsonString("copyButtonNodeType").getString().split(":");
+        Long dataTypeId = Long.valueOf(idString[0]);
+        Long nodeTypeId = Long.valueOf(idString[1]);
+
+        Set<Long> dataTypeIds = new HashSet<>();
+        dataTypeIds.add(dataTypeId);
         JsonObject entryMap = ScopeApi.getEntries(configuration, dataTypeIds, Constants.SCOPE_COPY_BUTTON_ENTRY_TYPE);
 
         final JsonObjectBuilder builder = Json.createObjectBuilder();
-        for (Long dataTypeId : dataTypeIds) {
-            JsonArray entriesForDataType = entryMap.getJsonArray(dataTypeId.toString());
-            if (entriesForDataType.isEmpty()) {
-                continue;
-            }
-            List<JsonObject> nodeTypes = dataTypesMap.get(dataTypeId);
-            List<JsonObject> elementsForDataType = getElementsForNodeTypes(configuration, nodeTypes);
-            if (elementsForDataType.isEmpty()) {
-                continue;
-            }
-
+        JsonArray entriesForDataType = entryMap.getJsonArray(dataTypeId.toString());
+        List<JsonObject> elementsForDataType = getElementsForNodeTypeId(configuration, nodeTypeId);
+        if (!entriesForDataType.isEmpty() && !elementsForDataType.isEmpty()) {
             for (JsonObject entry : entriesForDataType.getValuesAs(JsonObject.class)) {
                 final Integer entryId = entry.getInt("id");
                 final String entryTitle = entry.getString("title");
@@ -45,17 +41,11 @@ public class CopyButtonModelProvider implements SelectModelProvider {
         return builder.build();
     }
 
-    private List<JsonObject> getElementsForNodeTypes(final JsonObject configuration, List<JsonObject> nodeTypes) {
+    private List<JsonObject> getElementsForNodeTypeId(final JsonObject configuration, Long nodeTypeId) {
         Set<Long> nodeTypeIds = new HashSet<>();
-        for (JsonObject nodeType : nodeTypes) {
-            nodeTypeIds.add((long) nodeType.getInt(Constants.SCOPE_ENTITY_ID_KEY));
-        }
+        nodeTypeIds.add(nodeTypeId);
         JsonObject elements = ScopeApi.getElements(configuration, nodeTypeIds);
-        List<JsonObject> result = new ArrayList<>();
-        for (Long nodeTypeId : nodeTypeIds) {
-            result.addAll(elements.getJsonArray(nodeTypeId.toString()).getValuesAs(JsonObject.class));
-        }
-        return result;
+        return elements.getJsonArray(nodeTypeId.toString()).getValuesAs(JsonObject.class);
     }
 
 }
