@@ -69,7 +69,11 @@ public class GetAllChangedFiles implements Module {
         changedFiles.getValuesAs(JsonObject.class).forEach(file -> {
             JsonObjectBuilder builder = Json.createObjectBuilder();
             for(String key : file.keySet()) {
-                builder.add(key, file.get(key));
+                if (key.equals("type")) {
+                    builder.add(key, file.getString(key).toLowerCase());
+                } else {
+                    builder.add(key, file.get(key));
+                }
             }
             String elementName = ScopeApi.resolveElementIdToName(config, (long) file.getInt("elementId"));
             builder.add("elementName", elementName);
