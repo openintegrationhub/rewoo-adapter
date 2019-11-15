@@ -30,6 +30,7 @@ import java.util.*;
 /**
  * Action to update or create files.
  */
+@SuppressWarnings("unused")
 public class UpsertChangedFiles implements Module {
     private static final Logger logger = LoggerFactory.getLogger(UpsertChangedFiles.class);
 
@@ -47,7 +48,8 @@ public class UpsertChangedFiles implements Module {
         final JsonObject configuration = parameters.getConfiguration();
 
         Long fileEntryId = getFileContainerId(configuration);
-        String[] copyButtonIds = getCopyButtonIds(configuration);
+        Long copyButtonElementId = getCopyButtonElementId(configuration);
+        Long copyButtonEntryId = getCopyButtonEntryId(configuration);
         String username = configuration.getJsonString("username").getString();
         Long userId = ScopeApi.getUserId(configuration, username);
         Map<String, Long> elementNamesToIds = getElementNamesToIds(configuration);
@@ -57,10 +59,11 @@ public class UpsertChangedFiles implements Module {
             String url = file.getString("url");
             Long elementId;
             if (elementNamesToIds.containsKey(elementName)) {
+                // element already created
                 elementId = elementNamesToIds.get(elementName);
             } else {
-                // insert -> press copy button
-                elementId = ScopeApi.copyByButton(configuration, Long.valueOf(copyButtonIds[0]), Long.valueOf(copyButtonIds[1]), userId, elementName);
+                // insert -> press copy button to create new element
+                elementId = ScopeApi.copyByButton(configuration, copyButtonElementId, copyButtonEntryId, userId, elementName);
             }
             String filename = file.getString("name") + "." + file.getString("extension");
             ScopeApi.saveFileByUrl(configuration, elementId, fileEntryId, url, filename);
@@ -80,7 +83,17 @@ public class UpsertChangedFiles implements Module {
         return Long.valueOf(idString[1]);
     }
 
-    private String[] getCopyButtonIds(final JsonObject configuration) {
+    private Long getCopyButtonElementId(final JsonObject configuration) {
+        String[] parts = getCopyButtonParts(configuration);
+        return Long.valueOf(parts[0]);
+    }
+
+    private Long getCopyButtonEntryId(final JsonObject configuration) {
+        String[] parts = getCopyButtonParts(configuration);
+        return Long.valueOf(parts[1]);
+    }
+
+    private String[] getCopyButtonParts(final JsonObject configuration) {
         String copyButtonDescription = configuration.getJsonString("copyButton").getString();
         return copyButtonDescription.split("@");
     }

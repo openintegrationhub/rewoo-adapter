@@ -1,5 +1,5 @@
 /*
- *     Copyright 2019 REWOO Technologies AG
+ *     Copyright 2019 REWOO Software GmbH
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -26,6 +26,23 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.util.*;
 
+/**
+ * Implementation of {@link SelectModelProvider} providing a select model for copy buttons of a selected form type (see {@link NodeTypeModelProvider}).
+ * The provide sends a HTTP request to the REWOO Scope API and returns a JSON array of JSON objects as shown below.
+ * Further information can be found on https://rewoo.de/manual/T-rest-api.html#formularfelder-eines-typs-abfragen
+ *
+ * <pre>
+ *     {
+ *			id: 48,
+ *			title: "Create Invoice",
+ *			type: "CopyButton",
+ *			isTableColumn: false
+ *     }
+ * </pre>
+ *
+ * The title property of the JSON objects are used to display the select.
+ */
+@SuppressWarnings("unused")
 public class CopyButtonModelProvider implements SelectModelProvider {
 
     @Override

@@ -1,5 +1,5 @@
 /*
- *     Copyright 2019 REWOO Technologies AG
+ *     Copyright 2019 REWOO Software GmbH
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -23,6 +23,23 @@ import io.elastic.api.SelectModelProvider;
 import javax.json.*;
 import java.util.*;
 
+/**
+ * Implementation of {@link SelectModelProvider} providing a select model for the file container of a selected form type (see {@link NodeTypeModelProvider}).
+ * The provide sends a HTTP request to the REWOO Scope API and returns a JSON array of JSON objects as shown below.
+ * Further information can be found on https://rewoo.de/manual/T-rest-api.html#formularfelder-eines-typs-abfragen
+ *
+ * <pre>
+ *     {
+ *			id: 47,
+ *			title: "Invoices",
+ *			type: "FileLinks",
+ *			isTableColumn: false
+ *     }
+ * </pre>
+ *
+ * The title property of the JSON objects are used to display the select.
+ */
+@SuppressWarnings("unused")
 public class FileLinksModelProvider implements SelectModelProvider {
 
     @Override

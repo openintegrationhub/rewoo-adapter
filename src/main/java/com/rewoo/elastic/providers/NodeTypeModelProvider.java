@@ -1,5 +1,5 @@
 /*
- *     Copyright 2019 REWOO Technologies AG
+ *     Copyright 2019 REWOO Software GmbH
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -26,18 +26,20 @@ import javax.json.*;
 import java.util.HashMap;
 
 /**
- * Implementation of {@link SelectModelProvider} providing a select model for the pet status select.
- * The provide sends a HTTP request to the Petstore API and returns a JSON object as shown below.
+ * Implementation of {@link SelectModelProvider} providing a select model for the directory level of the file hierarchy.
+ * The provide sends a HTTP request to the REWOO Scope API and returns a JSON array of JSON objects as shown below.
+ * Further information can be found on https://rewoo.de/manual/T-rest-api.html#nodeTypes
  *
  * <pre>
- *     {
- *         "available": "Available",
- *         "sold": "Sold",
- *         "pending": "Pending"
- *     }
+ *         {
+ *             "id": 12,
+ *             "dataTypeId": 11,
+ *             "name": "Invoices",
+ *             "type": "NODE"
+ *         }
  * </pre>
  *
- * The value in the returned JSON object are used to display option's labels.
+ * The name property of the JSON objects in the returned JSON array are used to display the select.
  */
 public class NodeTypeModelProvider implements SelectModelProvider {
 

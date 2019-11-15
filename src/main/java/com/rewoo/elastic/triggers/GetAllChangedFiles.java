@@ -1,5 +1,5 @@
 /*
- *     Copyright 2019 REWOO Technologies AG
+ *     Copyright 2019 REWOO Software GmbH
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -31,11 +31,12 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * Trigger to get all node types
+ * Trigger to get all changed files since last request
  */
+@SuppressWarnings("unused")
 public class GetAllChangedFiles implements Module {
 
-    public static final String LAST_RUN_CHANGED_FILES = "lastRunChangedFiles";
+    private static final String LAST_RUN_CHANGED_FILES = "lastRunChangedFiles";
 
     private static final Logger logger = LoggerFactory.getLogger(GetAllChangedFiles.class);
 
