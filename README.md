@@ -75,3 +75,7 @@ you have to encapsulate the single JSON object into an array. In elasticio confi
     }, [])
 }   
 ```
+
+## License
+
+Apache-2.0 © [REWOO Software GmbH](https://rewoo.de)
